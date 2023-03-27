@@ -1,20 +1,39 @@
-# Slim Framework 4 Skeleton Application
+# Loyalty Application
 
-[![Coverage Status](https://coveralls.io/repos/github/slimphp/Slim-Skeleton/badge.svg?branch=master)](https://coveralls.io/github/slimphp/Slim-Skeleton?branch=master)
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 4 application. This application uses the latest Slim 4 with Slim PSR-7 implementation and PHP-DI container implementation. It also uses the Monolog logger.
+# How it Works
+This is a REST API for a simple loyalty points system. This API should allow
+users to earn and redeem points for their loyalty. Your task is to create a PHP script that implements this
+REST API. You should use the Slim Framework ( http://www.slimframework.com/) to build the API.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+API supports the following endpoints:
+GET /users: Retrieve a list of all users and their current points balance.
+POST /users: Create a new user with an initial points balance of 0.
+POST /users/{id}/earn: Earn points for a user. The request should include the number of points to
+earn and a description of the transaction.
+POST /users/{id}/redeem: Redeem points for a user. The request should include the number of
+points to redeem and a description of the transaction.
+DELETE /users/{id}: Delete a user by their ID.
+
+The user data should be stored in a MySQL database. You should create a users table with the following
+columns:
+● id (int, primary key)
+● name (varchar(255))
+● email (varchar(255))
+● points_balance (int)
 
 ## Install the Application
 
-Run this command from the directory in which you want to install your new Slim Framework application. You will require PHP 7.4 or newer.
+Run these commands from the directory in which you want to install the application.
+PHP 7.4 or newer is required.
 
 ```bash
-composer create-project slim/slim-skeleton [my-app-name]
+git clone 
+cd loyalty-app
+composer install
 ```
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+Replace `loyalty-app` with the desired directory name for your new application. You'll want to:
 
 * Point your virtual host document root to your new application's `public/` directory.
 * Ensure `logs/` is web writable.
@@ -22,21 +41,22 @@ Replace `[my-app-name]` with the desired directory name for your new application
 To run the application in development, you can run these commands 
 
 ```bash
-cd [my-app-name]
+cd loyalty-app
 composer start
 ```
 
 Or you can use `docker-compose` to run the app with `docker`, so you can run these commands:
 ```bash
-cd [my-app-name]
+cd loyalty-app
 docker-compose up -d
 ```
 After that, open `http://localhost:8080` in your browser.
+
+
+## Test the Application
 
 Run this command in the application directory to run the test suite
 
 ```bash
 composer test
 ```
-
-That's it! Now go build something cool.
